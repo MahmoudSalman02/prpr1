@@ -1,10 +1,4 @@
-﻿using System;
-
-namespace ConsoleApp1
-{
-    class Program
-    {
-    using System;
+using System;
 
 namespace ConsoleApp1
 {
@@ -14,26 +8,32 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Välkommen till ett spel där du gissar nummer?");
             Random randomerare = new Random();
-            int slump_tal = randomerare.Next(1, 100);
-            Console.WriteLine("Gissa på ett tal mellan 1 och 101");
+            int f = 0;
+            int randomtal = randomerare.Next(1, 100);
+            Console.WriteLine("Gissa på ett tal mellan 1 och 100");
             string str = Console.ReadLine();
             int tal = Convert.ToInt32(str);
 
-            do
+            while (randomtal != tal)
             {
+                f++;
                 Console.WriteLine("Fel gissa igen!");
-                str = Console.ReadLine();
-                tal = Convert.ToInt32(str);
-                if (tal > slump_tal)
+                
+                if (tal > randomtal)
                 {
                     Console.WriteLine("Talet är mindre");
                 }
-                else if (tal < slump_tal)
+                else if (tal < randomtal)
                 {
                     Console.WriteLine("Talet är större");
                 }
-
+                str = Console.ReadLine();
+                tal = Convert.ToInt32(str);
             }
-            while (tal != slump_tal);
+            
             Console.WriteLine("Grattis du gissade rätt");
+            Console.WriteLine("Du fick rätt efter " + f + " försök");
             Console.ReadLine();
+        }
+    }
+}
